@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Meine erste App mit Vue</title>
+
+    <script src="lib/js/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <p v-bind:class="{ 'aktuell' : istAktuell}">Absatz</p>
+            <input type="text" id="input" v-model="nachricht">
+
+        <p>Unsere Nachricht: {{nachricht}}</p>
+        <p>Zu tun: </p>
+        <ul>
+            <li v-for="aufgabe in aufgaben">{{aufgabe.beschreibung}}</li>
+        </ul>
+        <p>Ich zähle mit! </p>
+        <button v-on:click="meinemethode">Klick!</button>
+        <p>Das ist der {{zaehler}}. Klick</p>
+    
+    </div>
+    
+    
+    <script>
+
+        var app = new Vue({
+
+            el: '#app',
+
+            data: {
+                istAktuell: true,
+                nachricht: 'Hallo Vue!',
+                zaehler: 0,
+                aufgaben: [
+                    { beschreibung: 'Einkaufen', fertig: false },
+                    { beschreibung: 'E-Mails schreiben', fertig: false },
+                    { beschreibung: 'Sport', fertig: true },
+                    { beschreibung: 'Pflanzen gießen', fertig: false },
+                    { beschreibung: 'Stadtbibliothek', fertig: true }
+                ]
+
+            },
+            methods: {
+                meinemethode() {
+                    alert('aufgerufen!');
+                }
+
+        })
+
+    </script>
+    <style>
+        .aktuell {
+            background-color: red;
+        }
+    </style>
+</body>
+</html>
